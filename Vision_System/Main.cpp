@@ -22,7 +22,7 @@
 
 int visionSystem();
 
-/* Main program loop */
+/* Main program loop. */
 int main()
 {
 	
@@ -45,6 +45,7 @@ int  visionSystem()
 
 	cv::namedWindow(constants::WINDOW_NAME, cv::WINDOW_FREERATIO);
 
+	/* Loop for reading, loadnig and processing frames. */
 	while (true)
 	{
 		if (!vid.read(frame))
