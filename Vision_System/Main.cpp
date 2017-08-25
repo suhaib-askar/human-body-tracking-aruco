@@ -7,30 +7,23 @@
 */
 
 #include "Marker.h"
-#include "Frame.h"
+#include "MarkerHandler.h"
 #include "Constants.h"
-
 #include <opencv2\highgui.hpp>
 #include <iostream>
 
 /*
 	@brief	 Opens the frame and window and pass frame data to frame object for aruco marker tracking.
-
 	@return  a integer value that indicates status of function progress.
-
 */
 
 int visionSystem();
 
-/* Main program loop. */
 int main()
 {
-	
 	visionSystem();
-
 	return 0;
 }
-
 
 int  visionSystem()
 {
@@ -54,9 +47,9 @@ int  visionSystem()
 			break;
 		}
 
-		Frame frameObject{ frame };
-		frameObject.markerTracking();
-		frameObject.showMarkerDistance();
+		MarkerHandler markerHandlerobject{ frame };
+		markerHandlerobject.markerTracking();
+		markerHandlerobject.showMarkerDistance();
 
 		cv::imshow("Vision system", frame);
 		if (cv::waitKey(constants::END_KEY) >= 0)

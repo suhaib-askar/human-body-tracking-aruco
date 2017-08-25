@@ -6,13 +6,11 @@
 	@brief   Constants namespace and variables definition.
 */
 
-
 #pragma once
 #ifdef CONSTANTS_H
 #endif CONSTANTS_H
 
 #include <string>
-
 
 namespace constants
 {

@@ -1,5 +1,5 @@
 /*
-	@file	 Frame.cpp
+	@file	 MarkerHandler.cpp
 	@author  Ante Javor
 	@date    24.07.2017
 	@version 1.0
@@ -7,9 +7,8 @@
 */
 
 #include "Marker.h"
-#include "Frame.h"
+#include "MarkerHandler.h"
 #include "Constants.h"
-
 #include <opencv2\imgproc.hpp>
 #include <string>
 
@@ -21,8 +20,7 @@
 	@return void
 */
 
-
-void Frame::detectMarkers(cv::Mat& frame, cv::Ptr<cv::aruco::Dictionary> dictionary, std::vector<Marker>& detectedMarkers)
+void MarkerHandler::detectMarkers(cv::Mat& frame, cv::Ptr<cv::aruco::Dictionary> dictionary, std::vector<Marker>& detectedMarkers)
 {
 	std::vector<std::vector<cv::Point2f>> markerCorners;
 	std::vector<int> markersID;
@@ -48,7 +46,7 @@ void Frame::detectMarkers(cv::Mat& frame, cv::Ptr<cv::aruco::Dictionary> diction
 	@return void
 */
 
-void Frame::connectDetectedMarkers(cv::Mat& frame, std::vector<Marker> detectedMarkers)
+void MarkerHandler::connectDetectedMarkers(cv::Mat& frame, std::vector<Marker> detectedMarkers)
 {
 		std::vector<cv::Point2i> centerPointsLowerBody;
 		std::vector<cv::Point2i> centerPointsUpperBody;
@@ -56,11 +54,9 @@ void Frame::connectDetectedMarkers(cv::Mat& frame, std::vector<Marker> detectedM
 		for (auto object : detectedMarkers)
 		{
 			object.calculateMarkerCenter();
-			
 			if (object.getMarkerID() < constants::UPPER_BODY_LIMIT)
 			{
 				centerPointsUpperBody.push_back(object.getMarkerCenter());
-
 				if (object.getMarkerID() == constants::MIDDLE_MARKER_CHEST)
 					middlePoints.push_back(object.getMarkerCenter());
 			}
@@ -83,7 +79,6 @@ void Frame::connectDetectedMarkers(cv::Mat& frame, std::vector<Marker> detectedM
 
 		if (middlePoints.size() == 2)
 			cv::line(frame, middlePoints[0], middlePoints[1],cv::Scalar{ 0,0,0 }, 3, 8);
-
 	}
 
 /*
@@ -91,8 +86,7 @@ void Frame::connectDetectedMarkers(cv::Mat& frame, std::vector<Marker> detectedM
 	@return void
 */
 
-
-void Frame::showMarkerDistance()
+void MarkerHandler::showMarkerDistance()
 {
 	cv::Point2f markerCenterOne;
 	cv::Point2f markerCenterTwo;
@@ -118,10 +112,8 @@ void Frame::showMarkerDistance()
 	{
 		cv::LineIterator iterator(refrenceFrame, markerCenterOne, markerCenterTwo, 8, true);
 		double numberOfPixels = iterator.count;
-
 		cv::LineIterator iteratorTwo(refrenceFrame, markerChest, markerBelly, 8, true);
 		double numberOfPixelsChest = iteratorTwo.count;
-
 		double distance = (constants::REFRENCE_DISTANCE / numberOfPixels) * numberOfPixelsChest;
 
 		std::string distanceInCm{ "Lenght chest: " };
@@ -132,13 +124,15 @@ void Frame::showMarkerDistance()
 	}
 
 }
+
 /*
 	@brief Packs two functions in one, detectMarkers and connectDetectedMarkers.
 	@return void
 */
-void Frame::markerTracking()
+
+void MarkerHandler::markerTracking()
 {
-	Frame::detectMarkers(refrenceFrame, markerDictionary, detectedMarkers);
-	Frame::connectDetectedMarkers(refrenceFrame, detectedMarkers);
+	MarkerHandler::detectMarkers(refrenceFrame, markerDictionary, detectedMarkers);
+	MarkerHandler::connectDetectedMarkers(refrenceFrame, detectedMarkers);
 
 }

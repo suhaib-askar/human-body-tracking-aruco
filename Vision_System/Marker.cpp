@@ -7,7 +7,6 @@
 */
 
 #include "Marker.h"
-
 #include <math.h>
 #include <opencv2\imgproc.hpp>
 
@@ -22,7 +21,6 @@ Marker::Marker(int markerNum, std::vector<cv::Point2f> markerCorners, cv::Mat &f
 {
 	markerID = markerNum;
 	capFrame = frame;
-	
 	for (int i = 0; i < markerCorners.size(); i++)
 	{
 		markerPoints.push_back(markerCorners[i]);
@@ -47,7 +45,6 @@ int Marker::getMarkerID() const
 void Marker::calculateMarkerCenter()
 {
 	cv::LineIterator iter(capFrame, markerPoints[0], markerPoints[2], 8, false);
-	
 	for (int i = 0; i < iter.count; i++)
 	{
 		if (iter.count / 2 == i)

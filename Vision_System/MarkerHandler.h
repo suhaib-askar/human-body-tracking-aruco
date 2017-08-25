@@ -1,5 +1,5 @@
 /*
-	@file	 Frame.h
+	@file	 MarkerHandler.h
 	@author  Ante Javor
 	@date    24.07.2017
 	@version 1.0
@@ -7,21 +7,19 @@
 */
 
 #pragma once
-#ifdef FRAME_H
-#endif FRAME_h
+#ifdef MARKERHANDLER_h
+#endif MARKERHANDLER_h
 
 #include "Marker.h"
-
 #include <opencv2\aruco.hpp>
 #include <vector>
 
-
-class Frame
+class MarkerHandler
 {
 
 public:
 
-	Frame(cv::Mat &frame) : refrenceFrame(frame) {};
+	MarkerHandler(cv::Mat &frame) : refrenceFrame(frame) {};
 	void markerTracking();
 	void showMarkerDistance();
 	
