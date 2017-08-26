@@ -2,7 +2,6 @@
 	@file	 MarkerHandler.h
 	@author  Ante Javor
 	@date    24.07.2017
-	@version 1.0
 	@brief   Frame class members declaration and definition.
 */
 

@@ -2,7 +2,6 @@
 	@file	 MarkerHandler.cpp
 	@author  Ante Javor
 	@date    24.07.2017
-	@version 1.0
 	@brief   Frame class functions definition.
 */
 
@@ -53,7 +52,7 @@ void MarkerHandler::connectDetectedMarkers(cv::Mat& frame, std::vector<Marker> d
 		std::vector<cv::Point2i> middlePoints;
 		for (auto object : detectedMarkers)
 		{
-			object.calculateMarkerCenter();
+			
 			if (object.getMarkerID() < constants::UPPER_BODY_LIMIT)
 			{
 				centerPointsUpperBody.push_back(object.getMarkerCenter());
@@ -96,7 +95,7 @@ void MarkerHandler::showMarkerDistance()
 
 	for (auto object : detectedMarkers)
 	{
-		object.calculateMarkerCenter();
+	
 		if (object.getMarkerID() == constants::DISTANCE_REF_MARKER_ONE)
 			markerCenterOne = object.getMarkerCenter();
 		else if (object.getMarkerID() == constants::DISTANCE_REF_MARKER_TWO)

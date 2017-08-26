@@ -2,12 +2,10 @@
 	@file	 Marker.cpp
 	@author  Ante Javor
 	@date    24.07.2017
-	@version 1.0
 	@brief   Marker class function and constructor definition.
 */
 
 #include "Marker.h"
-#include <math.h>
 #include <opencv2\imgproc.hpp>
 
 /*
@@ -61,8 +59,9 @@ void Marker::calculateMarkerCenter()
 
 */
 
-cv::Point2f Marker::getMarkerCenter() const
+cv::Point2f Marker::getMarkerCenter() 
 {
+	Marker::calculateMarkerCenter();
 	return center;
 }
 

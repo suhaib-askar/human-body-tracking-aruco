@@ -2,7 +2,6 @@
 	@file	 Marker.h
 	@author  Ante Javor
 	@date    24.07.2017
-	@version 1.0
 	@brief   Marker class members declaration.
 */
 
@@ -19,9 +18,8 @@ class Marker
 public:
 
 	Marker(int markerNum, std::vector<cv::Point2f> markerCorners, cv::Mat &frame);
-	cv::Point2f getMarkerCenter() const;
+	cv::Point2f getMarkerCenter();
 	int getMarkerID() const;
-	void calculateMarkerCenter();
 
  private:
 
@@ -29,6 +27,7 @@ public:
 	 int markerID;
 	 cv::Point2f center;
 	 std::vector<cv::Point2f> markerPoints;
+	 void calculateMarkerCenter();
 };
 
 

@@ -2,7 +2,6 @@
 	@file	 Constants.h
 	@author  Ante Javor
 	@date    24.07.2017
-	@version 1.0
 	@brief   Constants namespace and variables definition.
 */
 
