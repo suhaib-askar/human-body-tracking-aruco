@@ -2,7 +2,7 @@
 	@file	 MarkerHandler.cpp
 	@author  Ante Javor
 	@date    24.07.2017
-	@brief   Frame class functions definition.
+	@brief   Marker class functions definition.
 */
 
 #include "Marker.h"

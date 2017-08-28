@@ -2,7 +2,7 @@
 	@file	 MarkerHandler.h
 	@author  Ante Javor
 	@date    24.07.2017
-	@brief   Frame class members declaration and definition.
+	@brief   MarkerHandler class members declaration and definition.
 */
 
 #pragma once
@@ -30,6 +30,5 @@ private:
 	cv::Mat& refrenceFrame;
 	cv::Ptr <cv::aruco::Dictionary> markerDictionary = cv::aruco::getPredefinedDictionary(cv::aruco::PREDEFINED_DICTIONARY_NAME::DICT_4X4_50);
 	std::vector<Marker> detectedMarkers;
-
 };
 
