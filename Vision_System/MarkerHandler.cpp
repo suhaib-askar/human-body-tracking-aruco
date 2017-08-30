@@ -27,6 +27,7 @@ void MarkerHandler::detectMarkers(cv::Mat& frame, cv::Ptr<cv::aruco::Dictionary>
 	cv::aruco::detectMarkers(frame, dictionary, markerCorners, markersID);
 	cv::aruco::drawDetectedMarkers(frame, markerCorners, markersID);
 
+	/* Stroing markers an sorting them by ID. */
 	if (markersID.size() > 0)
 	{
 		for (int i = 0; i < markersID.size(); i++)
@@ -50,6 +51,8 @@ void MarkerHandler::connectDetectedMarkers(cv::Mat& frame, std::vector<Marker> d
 		std::vector<cv::Point2i> centerPointsLowerBody;
 		std::vector<cv::Point2i> centerPointsUpperBody;
 		std::vector<cv::Point2i> middlePoints;
+
+		/* Storing and sorting center points of detected markers. */
 		for (auto object : detectedMarkers)
 		{
 			
@@ -73,6 +76,7 @@ void MarkerHandler::connectDetectedMarkers(cv::Mat& frame, std::vector<Marker> d
 
 		}
 
+		/* Drawing functions that connect center points. */
 		cv::polylines(frame, centerPointsUpperBody, false, cv::Scalar{ 0,0,0 }, 3, 8);
 		cv::polylines(frame, centerPointsLowerBody, false, cv::Scalar{ 0,0,0 }, 3, 8);
 
@@ -104,9 +108,11 @@ void MarkerHandler::showMarkerDistance()
 			markerChest = object.getMarkerCenter();
 		else if (object.getMarkerID() == constants::MARKER_MEASURE_END)
 			markerBelly = object.getMarkerCenter();
+		else
 			continue;
 	}
 
+	/* Measuring distance between, and put it on frame */
 	if (markerChest.x > 0 && markerBelly.x > 0 && markerCenterOne. x > 0 && markerCenterTwo.x > 0 )
 	{
 		cv::LineIterator iterator(refrenceFrame, markerCenterOne, markerCenterTwo, 8, true);
